@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'teachinfo',
     'filterapi',
     'Sattand',
+    'complaints',
 ]
 
 MIDDLEWARE = [

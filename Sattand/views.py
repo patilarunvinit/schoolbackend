@@ -43,7 +43,7 @@ def Tfiltertostand(request):
         name = request.GET['name']
         output = attandmodN.objects.all().filter(teacher_name=name).order_by("class_div").values("class_div").distinct()
         outdata = TfilterSserializer(output, many=True)
-        return JsonResponse(outdata.data, safe=False)\
+        return JsonResponse(outdata.data, safe=False)
 
 
 @csrf_exempt
@@ -54,6 +54,17 @@ def Tfiltertodate(request):
 
         output = attandmodN.objects.all().filter(teacher_name=name,class_div=class_div).order_by("date").values("date").distinct()
         outdata = TfilterDserializer(output, many=True)
+        return JsonResponse(outdata.data, safe=False)
+
+
+@csrf_exempt
+def Sattendence(request):
+    if request.method == "GET":
+        name = request.GET['name']
+        class_div = request.GET['class_div']
+
+        output = attandmodN.objects.all().filter(name=name,class_div=class_div).order_by("date")
+        outdata = attandmodserializer(output, many=True)
         return JsonResponse(outdata.data, safe=False)
 
 
@@ -69,3 +80,26 @@ def checkback(request):
         output = attandmodN.objects.all().filter(teacher_name=name,class_div=class_div,date=date)
         outdata = attandmodserializer(output, many=True)
         return JsonResponse(outdata.data, safe=False)
+
+
+@csrf_exempt
+def percentageCAl(request):
+    if request.method == "GET":
+        name = request.GET['name']
+        class_div = request.GET['class_div']
+
+
+        output = attandmodN.objects.all().filter(name=name,class_div=class_div)
+        all=len(output)
+        attand=0
+        for i in range(all):
+            if output[i].option == True:
+                attand+=1
+
+            else:
+                pass
+
+        div=attand/all
+        percentage=div*100
+        print(percentage)
+        return JsonResponse({"percentage":percentage}, safe=False)

@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('teachinfo.urls')),
     path('', include('filterapi.urls')),
     path('', include('Sattand.urls')),
+    path('', include('complaints.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

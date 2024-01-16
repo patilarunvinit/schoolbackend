@@ -6,5 +6,7 @@ urlpatterns=[
     path('attandcheck/', views.checkback),
     path('tfilterstand/', views.Tfiltertostand),
     path('tfilterdate/', views.Tfiltertodate),
+    path('Sattendence/', views.Sattendence),
+    path('percentageCAl/', views.percentageCAl),
 
 ]

@@ -39,3 +39,18 @@ class teacherattendserializer(serializers.Serializer):
 
     def create(self, validated_data):
         return sinfo.objects.create(**validated_data)
+
+
+
+
+
+class StudFilterserializer(serializers.Serializer):
+    name = serializers.CharField(max_length=60)
+
+
+    class Meta:
+        model = sinfo
+        fields = ("name")
+
+    def create(self, validated_data):
+        return sinfo.objects.create(**validated_data)
