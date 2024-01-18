@@ -5,5 +5,6 @@ urlpatterns=[
     path('complaintForm/', views.complaintForm),
     path('teacherComp/', views.teacherComp),
     path('ComDeleteById/', views.ComDeleteById),
+    path('notificationSdata/', views.notificationSdata),
 
 ]

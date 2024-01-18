@@ -12,22 +12,27 @@ from .models import attandmodN
 def attandForS(request):
     if request.method =='POST':
         data1 = JSONParser().parse(request)
-        lenn=len(data1)
-        print(lenn)
-        counter=1
-        for i in range(lenn):
-            print(data1[i])
-            outdata = attandmodserializer(data=data1[i])
-            if outdata.is_valid():
-                outdata.save()
-
-            else:
-                counter=0
-
-        if counter == 1:
-            return JsonResponse({"massage":"data pass"}, safe=False)
+        date=data1[0]['date']
+        sdata = attandmodN.objects.all().filter(date=date)
+        print(sdata)
+        if sdata:
+            return JsonResponse({"massage": "already submitted"}, safe=False)
         else:
-            return JsonResponse({"massage": "data not pass"}, safe=False)
+            lenn = len(data1)
+            counter = 1
+            for i in range(lenn):
+                outdata = attandmodserializer(data=data1[i])
+                if outdata.is_valid():
+                    outdata.save()
+
+                else:
+                    counter = 0
+
+            if counter == 1:
+                return JsonResponse({"massage": "data pass"}, safe=False)
+            else:
+                return JsonResponse({"massage": "data not pass"}, safe=False)
+
 
 
     elif request.method == "GET":
@@ -103,3 +108,6 @@ def percentageCAl(request):
         percentage=div*100
         print(percentage)
         return JsonResponse({"percentage":percentage}, safe=False)
+
+
+

@@ -1,7 +1,8 @@
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
-
 
 class CompModel(models.Model):
     teacher_name = models.CharField(max_length=50)
