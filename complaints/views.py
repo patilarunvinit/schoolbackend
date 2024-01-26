@@ -51,7 +51,8 @@ def notificationSdata(request):
         name = request.GET['name']
         class_div = request.GET['class_div']
 
-        output = CompModel.objects.all().filter(name=name,class_div=class_div).order_by("date")
+        output = CompModel.objects.all().filter(name=name,class_div=class_div).order_by("complaint_date1")
         notifiCount=len(output)
         outdata = TeacherFilerSerializer(output, many=True)
-        return JsonResponse({"data":outdata.data,"noticount":notifiCount}, safe=False)
+        reversed_data = outdata.data[::-1]
+        return JsonResponse({"data":reversed_data,"noticount":notifiCount}, safe=False)
