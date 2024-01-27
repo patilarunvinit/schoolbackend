@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ef$^4n!gu9-br93mf#8v9j0q%18fmw-u69mj&hzpm295=rnv%3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "salah99.pythonanywhere.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'Sattand',
     'complaints',
     'contact',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -93,17 +94,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-'default': dj_database_url.config(
-        default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3")
-    )
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': "schoolpro1",
-    #     "HOST": '127.0.0.1',
-    #     "PORT": 3306,
-    #     "USER": 'root',
-    #
-    # }
+# 'default': dj_database_url.config(
+#         default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3")
+#     )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "schoolpro1",
+        "HOST": '127.0.0.1',
+        "PORT": 3306,
+        "USER": 'root',
+
+    }
 }
 
 
